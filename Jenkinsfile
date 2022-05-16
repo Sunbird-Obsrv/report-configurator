@@ -55,8 +55,10 @@ node('build-slave') {
                 }
             }
             stage('ArchiveArtifacts') {
-                archiveArtifacts "metadata.json"
-                currentBuild.description = "${build_tag}"
+                dir("superset") {
+                    archiveArtifacts "metadata.json"
+                    currentBuild.description = "${build_tag}"
+                }
             }
         }
 
