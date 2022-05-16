@@ -5,7 +5,7 @@ node('build-slave') {
         String ANSI_BOLD = "\u001B[1m"
         String ANSI_RED = "\u001B[31m"
         String ANSI_YELLOW = "\u001B[33m"
-        String UPSTREAM_GIT_URL = "https://github.com/apache/superset"
+        String UPSTREAM_GIT_URL = "git@github.com:apache/superset.git"
         String UPSTREAM_TAG = "0.36.0rc2"
 
         ansiColor('xterm') {
@@ -31,8 +31,10 @@ node('build-slave') {
                     println(ANSI_BOLD + ANSI_YELLOW + "github_release_tag specified, building from github_release_tag: " + params.github_release_tag + ANSI_NORMAL)
                 }
 
-                checkout scm: [$class: 'GitSCM', branches: [[name: "refs/tags/" + UPSTREAM_TAG]], userRemoteConfigs: [[url: UPSTREAM_GIT_URL]]]
-
+                sh("git clone ${UPSTREAM_GIT_URL}")
+                dir('superset') {
+                    sh("git checkout ${UPSTREAM_TAG}")
+                }
                 echo "build_tag: " + build_tag
             }
 
