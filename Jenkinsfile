@@ -31,14 +31,14 @@ node('build-slave') {
                     println(ANSI_BOLD + ANSI_YELLOW + "github_release_tag specified, building from github_release_tag: " + params.github_release_tag + ANSI_NORMAL)
                 }
 
-                sh("git clone ${UPSTREAM_GIT_URL}")
-                dir('superset') {
-                    sh("git checkout ${UPSTREAM_TAG}")
-                }
+                sh("git clone -b ${UPSTREAM_TAG} –depth 1 ${UPSTREAM_GIT_URL}")
+
                 echo "build_tag: " + build_tag
             }
 
             stage('MergeUpstreamRepo') {
+                sh('cp -R superset/superset-frontend/src/explore superset/superset-frontend/src/reportexplore')
+
                 sh('cp -R superset-backend/* superset/superset/')
                 sh('cp -R superset-frontend/* superset/superset-frontend/')
                 sh('cp -R build.sh superset/')
