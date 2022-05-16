@@ -31,7 +31,7 @@ node('build-slave') {
                     println(ANSI_BOLD + ANSI_YELLOW + "github_release_tag specified, building from github_release_tag: " + params.github_release_tag + ANSI_NORMAL)
                 }
 
-                sh("git clone ${UPSTREAM_GIT_URL}")
+                git tag: UPSTREAM_TAG, credentialsId: 'git_credentials', url: UPSTREAM_GIT_URL
                 dir('superset') {
                     sh("git checkout ${UPSTREAM_TAG}")
                 }
