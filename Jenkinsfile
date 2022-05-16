@@ -31,7 +31,7 @@ node('build-slave') {
                     println(ANSI_BOLD + ANSI_YELLOW + "github_release_tag specified, building from github_release_tag: " + params.github_release_tag + ANSI_NORMAL)
                 }
 
-                sh("git clone -b ${UPSTREAM_TAG} –depth 1 ${UPSTREAM_GIT_URL}")
+                sh("git clone -b ${UPSTREAM_TAG} --depth 1 ${UPSTREAM_GIT_URL}")
 
                 echo "build_tag: " + build_tag
             }
