@@ -807,6 +807,7 @@ class SupersetSecurityManager(SecurityManager):
                     "can_add",
                     "can_submit_report",
                     "can_update_report_chart",
+                    "can_report_explore",
                 }
                 and pvm.view_menu.name in self.REPORT_USER_ONLY_MODEL_VIEWS
             )
@@ -844,6 +845,7 @@ class SupersetSecurityManager(SecurityManager):
                     "can_add",
                     "can_reject_report",
                     "can_publish_report",
+                    "can_report_explore",
                 }
                 and pvm.view_menu.name in self.REPORT_USER_ONLY_MODEL_VIEWS
             )
