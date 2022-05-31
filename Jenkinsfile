@@ -6,7 +6,7 @@ node('build-slave') {
         String ANSI_RED = "\u001B[31m"
         String ANSI_YELLOW = "\u001B[33m"
         String UPSTREAM_GIT_URL = "https://github.com/apache/superset.git"
-        String UPSTREAM_TAG = "0.36.0rc2"
+        String UPSTREAM_TAG = "0.36.0rc1"
 
         ansiColor('xterm') {
             stage('Checkout') {
